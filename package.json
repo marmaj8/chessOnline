@@ -1,0 +1,38 @@
+{
+  "name": "chessOnline",
+  "version": "0.0.1",
+  "description": "Client for online chess",
+  "productName": "Online Chess",
+  "cordovaId": "pl.chess-online.bartecki.majcher.app",
+  "capacitorId": "",
+  "author": "Marcin Majcher, Tomasz Bartecki",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.0.0",
+    "axios": "^0.18.1",
+    "quasar": "^1.0.0",
+    "socket.io": "^2.3.0",
+    "uws": "^100.0.1",
+    "vue-i18n": "^8.0.0",
+    "vue-socket.io": "^3.0.7"
+  },
+  "devDependencies": {
+    "@quasar/app": "^1.0.0",
+    "devtron": "^1.4.0",
+    "electron": "^7.1.10",
+    "electron-debug": "^3.0.1",
+    "electron-devtools-installer": "^2.2.4",
+    "electron-packager": "^14.2.0"
+  },
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  },
+  "browserslist": [
+    "last 1 version, not dead, ie >= 11"
+  ]
+}
