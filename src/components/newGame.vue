@@ -1,10 +1,8 @@
 <template>
     <form class="q-pa-md row" @submit.prevent.stop="onSubmit" @reset.prevent.stop="onReset">
-        <q-btn class="col" label="Utwórz Grę" type="submit" color="primary" />
-        <q-input class="col" v-model="gameName" filled label="Nazwa" />
-        <q-toggle class="col" v-model="priv" label="Prywatna"/>
-        <q-input class="col" v-if="priv" v-model="password" filled type="password" label="Hasło" />
-        <span class="col" v-else />
+        <q-btn label="Utwórz Grę" type="submit" color="primary" />
+        <q-toggle v-model="priv" label="Prywatna"/>
+        <q-input v-if="priv" v-model="password" filled type="password" label="Hasło" />
     </form>
 </template>
 
@@ -14,7 +12,6 @@ export default {
   name: 'NewGame',
   data () {
     return {
-      gameName: '',
       password: '',
       priv: false,
     }
@@ -22,13 +19,10 @@ export default {
 
   methods: {
     onSubmit (){
-        var name = null
-        if (this.gameName.length > 0){ name = this.gameName}
         var body = {
             playerId: this.$q.sessionStorage.getItem('user_id'),
             anyoneCanJoin: !this.priv,
             password: this.password,
-            name: name,
         }
         this.$axios.put('games', body, )
           .then((response) => {

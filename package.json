@@ -1,9 +1,9 @@
 {
-  "name": "chessOnline",
+  "name": "szachy-front",
   "version": "0.0.1",
-  "description": "Client for online chess",
-  "productName": "Online Chess",
-  "cordovaId": "pl.chess-online.bartecki.majcher.app",
+  "description": "Szachy internetowe w quasarze",
+  "productName": "Szachy Internetowe",
+  "cordovaId": "pl.internet-szachy.bartecki.majcher.app",
   "capacitorId": "",
   "author": "Marcin Majcher, Tomasz Bartecki",
   "private": true,
@@ -24,8 +24,7 @@
     "devtron": "^1.4.0",
     "electron": "^7.1.10",
     "electron-debug": "^3.0.1",
-    "electron-devtools-installer": "^2.2.4",
-    "electron-packager": "^14.2.0"
+    "electron-devtools-installer": "^2.2.4"
   },
   "engines": {
     "node": ">= 10.18.1",

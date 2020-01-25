@@ -1,6 +1,6 @@
-# Chess Online
+# Szachy Internetowe (szachy-front)
 
-Client application for online chess
+Szachy internetowe w quasarze
 
 ## Install the dependencies
 ```bash

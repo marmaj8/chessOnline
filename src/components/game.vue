@@ -1,18 +1,10 @@
 <template>
-  <div id="q-app">
     <div class="q-pa-md max">
-      <div v-if="this.$q.sessionStorage.getItem('usernName') === null">
-        <LoginPanel v-on:log-in="login"/>
-      </div>
-      <div v-else>
           <GameHeader v-bind:gameName="game.name" v-bind:player1="game.player1" v-bind:player2="game.player2" v-bind:activeplayer="game.activePlayer" v-bind:started="game.started" />
           <GameBoard v-bind:board="board" v-bind:selected="selected" v-on:move="move"/>
           <GameMenu v-if="!game.started" v-on:joinGame="joinGame" v-on:changePassword="changePassword" v-on:start="startGame" 
           v-bind:anyoneCanJoin="game.anyoneCanJoin" v-bind:player1="game.player1" v-bind:myName="myName" v-bind:player2="game.player2" />
-      </div>
     </div>
-  </div>
-  
 </template>
 
 <script>
@@ -24,7 +16,8 @@ import GameHeader from "../components/GameHeader";
 import GameMenu from "../components/GameMenu";
 
 export default {
-  name: 'PageGame',
+  name: 'Game',
+  props: ['game'],
   components: {
       LoginPanel,
       GameBoard,
@@ -33,79 +26,14 @@ export default {
   },
   data () {
     return {
-      logged: false,
 
       selected: {
         posX: -1,
         posY: -1
-      },
-
-      game: {
-        _id: "",
-        name: "",
-        active: true,
-        started: false,
-        anyoneCanJoin: true,
-        password: "",
-        activePlayer: 0,
-        white: 0,
-        player1: "",
-        player2: "",
-        pieces: []
-      },
-      isConnected: false
+      }
     }
   },
-
-  mounted: function () {
-    
-      this.$socket = io('http://localhost:3000');
-      const base = this
-
-      this.$socket.on('gameChanged-'+this.$route.query.gameId, function(game){ 
-        console.log(game)
-        //base.game = game
-        base.game = game
-        base.game.player2 = ""+game.player2
-      });
-      this.$socket.on('gameStarted-'+this.$route.query.gameId, function(game){ 
-        base.game = game
-        console.log("start")
-      });
-      this.$socket.on('gameMove-'+this.$route.query.gameId, function(game){ 
-        base.game = game
-        var player = game.player1
-        if(game.activePlayer == 2) {player = game.player2}
-        console.log("move")
-      });
-      this.$socket.on('gameWin-'+this.$route.query.gameId, function(game){ 
-        base.game = game
-        var player = game.player1
-        if(game.activePlayer == 1) {player = game.player2}
-        console.log("win")
-      });
-
-      this.$axios.get('games/'+this.$route.query.gameId)
-      .then((response) => {
-        this.game = response.data
-      })
-      .catch((error) => {
-        console.log(error.response)
-              this.$q.notify({
-                color: 'negative',
-                position: 'center',
-                message: error.response.data.message,
-                icon: 'report_problem'
-              })
-      this.$router.push("/games");
-      })
-  },
   methods: {
-    created() {
-    },
-    login: function(){
-      this.logged = true
-    },
     move(posX, posY)
     {
       //console.log(posX + " " + posY)
@@ -198,9 +126,6 @@ export default {
         str = str.concat("B")
       }
     var images = require.context('../assets/', false, /\.svg$/)
-   // var images = require.context('../assets/', false, /\.jpg$/)
-    console.log(str)
-    //str = "test"
     return images('./' + str + ".svg")
       return image
     },

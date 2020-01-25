@@ -21,7 +21,7 @@
               <span />
             </template>
             <template v-else>
-              <img class="figure" v-bind:src="field.piece.figure" /> 
+              <img class="figure" v-bind:src="field.piece.figure" />
             </template>
           </div>
           <div class="col">
