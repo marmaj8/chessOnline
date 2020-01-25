@@ -4,6 +4,7 @@
         <LoginPanel />
       </div>
       <div v-else class="q-pa-md">
+        <NewGame />
         <q-table
             title="Rozgrywki"
             :data="games"
@@ -42,12 +43,14 @@
 </template>
 
 <script>
+import NewGame from "../components/NewGame";
 import LoginPanel from "../components/LoginPanel";
 import io from 'socket.io-client';
 
 export default {
   name: 'PageGames',
   components: {
+    NewGame,
     LoginPanel,
   },
   data () {

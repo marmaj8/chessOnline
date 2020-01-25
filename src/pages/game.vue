@@ -7,6 +7,8 @@
       <div v-else>
           <GameHeader v-bind:gameName="game.name" v-bind:player1="game.player1" v-bind:player2="game.player2" v-bind:activeplayer="game.activePlayer" v-bind:started="game.started" />
           <GameBoard v-bind:board="board" v-bind:selected="selected" v-on:move="move"/>
+          <GameMenu v-if="!game.started" v-on:joinGame="joinGame" v-on:changePassword="changePassword" v-on:start="startGame" 
+          v-bind:anyoneCanJoin="game.anyoneCanJoin" v-bind:player1="game.player1" v-bind:myName="myName" v-bind:player2="game.player2" />
       </div>
     </div>
   </div>
@@ -19,6 +21,7 @@ import io from 'socket.io-client';
 import LoginPanel from "../components/LoginPanel";
 import GameBoard from "../components/GameBoard";
 import GameHeader from "../components/GameHeader";
+import GameMenu from "../components/GameMenu";
 
 export default {
   name: 'PageGame',
@@ -26,6 +29,7 @@ export default {
       LoginPanel,
       GameBoard,
       GameHeader,
+      GameMenu,
   },
   data () {
     return {
